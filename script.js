@@ -12,7 +12,12 @@ var Inversion = getColumn(url, 10);
 var NumInversion = getColumn(url, 11);
 var YearOpen = getColumn(url, 12);
 
+
+
 //List Coasters greater than 10 ft
+// Function is to determine Coasters that are taller than a given height
+//coasterHeight {number} - the given height to find taller coasters than
+// return {list} - all coasters taller than coasterHeight
 function getCoastersTallerThan(coasterHeight){
     if (typeof coasterHeight != "number") {
         return ["Invalid input: Please provide a numeric value for the height."];
@@ -36,11 +41,14 @@ function getCoastersTallerThan(coasterHeight){
     return total;
 }
 
-// console.log (getCoastersTallerThan(2));
+console.log (getCoastersTallerThan(2));
 
 
 
 //List of Coasters in Germany
+// Function is to determine Coasters that are in a country
+//Country {string} - the given country
+// return {list} - all coasters located within the country
 function getCoastersInCountry(Country){
     if (typeof Country == "number") {
         return ["Invalid input: Please input country instead of number."];
@@ -59,11 +67,17 @@ function getCoastersInCountry(Country){
     }
     return matchingCoasters;
 }
-// console.log(getCoastersInCountry("italy"));
+console.log(getCoastersInCountry("italy"));
 
 
 //List of Coasters that opened after 2000
+// Function is to determine Coasters that are open after a year
+//coasterYear {number} - The year of Coaster
+// return {list} - all coasters that were open after a certain year
 function getCoastersInyear (coasterYear){
+    if (typeof coasterYear != "number") {
+        return ["Invalid input: Please provide a numeric value for the year."];
+    }
     if(coasterYear > 2014){
         return ["The newest coaster was built in 2014"];
     }
@@ -73,34 +87,54 @@ function getCoastersInyear (coasterYear){
             total.push(coasterName[i]);
         }
     }
+    
     return total;
 }
-console.log (getCoastersInyear("twin"));
+console.log (getCoastersInyear("twenty"));
 
 
 
 //List of Coasters in at Six Flags Great America
+// Function is to determine Coasters that are located in a certain park
+//Parks {string} - the Park Name
+// return {list} - all coasters that are located in the Park
 function getLocationOfCoasters (Park){
+    if (typeof Park != "string") {
+        return ["Invalid input: Please provide a string for the park."];
+    }
     var matchingCoasters = []
     for (var i=0; i < ParkName.length; i++){
         if(ParkName[i].includes(Park)){
             matchingCoasters.push(coasterName[i]);
         }
     }
+    if(matchingCoasters.length == 0){
+        return ["no matches for that park"]
+    }
+    
     return matchingCoasters;
 }
-// console.log(getLocationOfCoasters("Six Flags Great America"));
+console.log(getLocationOfCoasters("Parque de la Ciudad"));
 
 
 //List of Coasters that are made out of Wood
+// Function is to determine Coasters that are made out of a certain material
+//Material{string} - The type of material
+// return {list} - all coasters that are made of that material
 function getCoasterMaterial (Material){
+    if (typeof Park != "string") {
+        return ["Invalid input: Please provide a string not a number."];
+    }
     var matchingCoasters = []
     for (var i=0; i < Materials.length; i++){
         if(Materials[i].includes(Material)){
             matchingCoasters.push(coasterName[i]);
         }
     }
+    if(matchingCoasters.length == 0){
+        return ["no matches for that material"]
+    }
     return matchingCoasters;
 }
-// console.log(getCoasterMaterial("Wood"));
+console.log(getCoasterMaterial("20"));
 
